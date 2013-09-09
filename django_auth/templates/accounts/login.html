@@ -1,0 +1,22 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}登录{% endblock %}
+{% block span8 %}
+
+
+{% if form.errors %}
+<div class="alert alert-error">
+    <p>邮箱或密码错误</p>
+</div>
+{% endif %}
+
+<form class="form-signin" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <h3 class="form-signin-heading">登录</h3>
+        {{ form.username }}
+        {{ form.password }}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="btn btn-large btn-primary">登录</button>
+</form>
+
+{% endblock %}
